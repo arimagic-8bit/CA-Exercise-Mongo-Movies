@@ -126,7 +126,7 @@ You may use the following Lecture Notes as your reference:
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find()
 ```
 
   
@@ -140,7 +140,7 @@ You may use the following Lecture Notes as your reference:
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find().pretty()
 ```
 
   
@@ -154,6 +154,7 @@ You may use the following Lecture Notes as your reference:
 **<u>Your query</u>**:
 
 ```js
+db.movies.find({year: 2000})
 
 ```
 
@@ -168,6 +169,7 @@ You may use the following Lecture Notes as your reference:
 **<u>Your query</u>**:
 
 ```js
+db.movies.find({rate:"8.8"})
 
 ```
 
@@ -184,7 +186,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find({_id:ObjectId("5e9d9a06b47ef9076b707a35")}
 ```
 
   
@@ -198,7 +200,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find({$and:[{year:2000}, {rate: "8.5"}]})
 ```
 
   
@@ -212,7 +214,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find({$or:[{year:2000}, {year: 2005}]})
 ```
 
   
@@ -226,7 +228,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find({rate:{$ne: "9.0"}}).limit(10)
 ```
 
  
@@ -242,6 +244,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
+db.movies.find({$nor:[{director:"Steven Spielberg"},{director: "Quentin Tarantino"}]})
 
 ```
 
@@ -256,7 +259,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find({},{title:1, year:1, genre:1, _id:0})
 ```
 
   
@@ -270,7 +273,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find({},{title:1}).sort({title:1})
 ```
 
   
@@ -284,6 +287,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
+db.movies.find({},{title:1, director:1}).sort({title:1}).skip(5)
 
 ```
 
@@ -298,7 +302,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find({director:"Robert Zemeckis"})
 ```
 
   
@@ -312,6 +316,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
+db.movies.find({rate:{$ne:"8.5"}}, {title:1, rate:1, _id:0})
 
 ```
 
@@ -326,6 +331,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
+db.movies.find({year:{$gte:2015}}, {title:1, year:1, director:1})
 
 ```
 
@@ -340,7 +346,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find({year:{$lt:2000}}, {title:1, year:1, director:1})
 ```
 
   
@@ -354,7 +360,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.find({$or:[{year:2000},{year:2005}, {year:2010}]}).sort({year:1}) 
 ```
 
   
@@ -366,7 +372,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 ### 18. Retrieve all documents from the `movies` collection created in the years 1999 and 2010 and excluding the movie with `title` "Inception"
 
 ```js
-
+db.movies.find({$and:[{$or:[{year:1999},{year:2010}]},{title:{$ne:'Inception'}}]}) 
 ```
 
  
@@ -380,7 +386,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
 **<u>Your query</u>**:
 
 ```js
-
+db.movies.deleteMany({year:1999})
 ```
 
 
@@ -394,7 +400,7 @@ To specify an **`ObjectId`** type, use the format **`ObjectId(’id’)`**,
  **<u>Your query</u>**:
 
 ```js
-
+db.movies.deleteOne({_id:ObjectId("5e9d9a07b47ef9076b707ad6")})
 ```
 
  
